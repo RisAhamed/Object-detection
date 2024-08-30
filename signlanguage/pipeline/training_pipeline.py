@@ -2,8 +2,9 @@ import os,sys
 from signlanguage.logger import logger
 from signlanguage.exception import SignException
 from signlanguage.components.data_ingestion import DataIngestion
-from signlanguage.entity.artifacts_entity import DataIngestionArtifacts,DataValidationArtifacts
-from signlanguage.entity.config_entity  import DataIngestionConfig,DataValidationConfig
+from signlanguage.components.model_trainer import ModelTrainer
+from signlanguage.entity.artifacts_entity import  * 
+from signlanguage.entity.config_entity  import *
 from signlanguage.components.data_validation import DataValidation
 
 
@@ -47,11 +48,30 @@ class TrainingPipeline:
 
         except Exception as e:
             raise SignException(e, sys) from e
+
+    def start_model_training(
+        self, data_validation_artifact: DataValidationArtifacts
+    ) -> ModelTrainerArtifact:
+        try:
+            logger.info("<<<<<<<<<Started the model training inside the Training_pipeline.py>>>>>>>")
+            model_trainer = ModelTrainer(model_trainer_config=self.model_trainer_config)
+            model_trainer_artifact = model_trainer.initiate_model_trainer()
+            logger.info("Model Training is Compleed")
+            return model_trainer_artifact
+        except Exception as e:
+            raise  SignException(e,sys) from e
         
     def run_pipeline(self)->None:
         try: 
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+
+            if data_validation_artifact.validation_status == True:
+
+                model_trainer_artifact =self.start_model_training(data_validation_artifact=data_validation_artifact)
+                logger.info("Training Pipeline is Compleed")
+            else :
+                raise Exception("Training Pipeline is not Complemented")
         except Exception as e:
             raise SignException(e,sys)
         

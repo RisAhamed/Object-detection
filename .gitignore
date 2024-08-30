@@ -166,3 +166,7 @@ logs
 logs/*
 artifacts
 artifacts/*
+
+signlanguage/yolov5/*
+yolov5 
+yolov5/*
