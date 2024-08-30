@@ -5,7 +5,7 @@ DATA_INGESTION_DIR_NAME : str = "dataingestion"
 
 DATA_INGESTION_FETURE_STORE :  str = "Feature_store"
 
-DATA_DOWNLOAD_URL : str = "https://github.com/RisAhamed/Object-detection/raw/main/signlanguageproject.v1i.yolov5pytorch.zip"
+DATA_DOWNLOAD_URL : str = "https://github.com/RisAhamed/Object-detection/raw/main/Sign_language_data.zip"
 
 
 DATA_VALIDATION_DIR_NAME: str = "datavalidation"

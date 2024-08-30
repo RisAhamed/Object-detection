@@ -2,7 +2,7 @@ import os.path
 import sys
 import yaml
 import base64
-
+from pathlib import Path
 from signlanguage.exception import SignException
 from signlanguage.logger import logger
 

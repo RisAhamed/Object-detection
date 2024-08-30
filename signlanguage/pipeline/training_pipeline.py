@@ -12,6 +12,7 @@ class TrainingPipeline:
     def __init__(self):
         self.data_ingestion_config= DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
+        self.model_trainer_config  = ModelTrainerconfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifacts:
         try:
@@ -50,7 +51,7 @@ class TrainingPipeline:
             raise SignException(e, sys) from e
 
     def start_model_training(
-        self, data_validation_artifact: DataValidationArtifacts
+        self, 
     ) -> ModelTrainerArtifact:
         try:
             logger.info("<<<<<<<<<Started the model training inside the Training_pipeline.py>>>>>>>")
@@ -68,7 +69,7 @@ class TrainingPipeline:
 
             if data_validation_artifact.validation_status == True:
 
-                model_trainer_artifact =self.start_model_training(data_validation_artifact=data_validation_artifact)
+                model_trainer_artifact =self.start_model_training()
                 logger.info("Training Pipeline is Compleed")
             else :
                 raise Exception("Training Pipeline is not Complemented")
