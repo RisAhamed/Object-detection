@@ -19,3 +19,6 @@ MODEL_TRAINER_DIR_NAME : str = "model_Trainer"
 MODEL_TRAINER_PRETRAINED_WEIGHT_NAME : str = "yolo5s.pt"
 MODEL_TRAINER_NO_EPOCHS: int = 1
 MODEL_TRAINER_BATCH_SIZE: int =5
+
+BUCKET_NAME ="riswan-sing-lang"
+S3_MODEL_NAME ="best.pt"

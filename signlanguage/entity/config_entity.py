@@ -53,3 +53,9 @@ class ModelTrainerconfig:
     no_of_epochs = MODEL_TRAINER_NO_EPOCHS
     batch_size = MODEL_TRAINER_BATCH_SIZE
 
+
+@dataclass
+class ModelPusherConfig:
+    BUCKET_NAME:str= BUCKET_NAME
+    S3_MODEL_KEY_PATH : str = S3_MODEL_NAME
+    
